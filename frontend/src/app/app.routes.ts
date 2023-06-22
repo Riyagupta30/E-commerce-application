@@ -6,7 +6,7 @@ import { CartComponent } from './cart/cart.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 export const APP_ROUTES: Routes = [
-    { path: 'product', component: ProductListComponent },
+    { path: 'products', component: ProductListComponent },
     { path: 'cart', component: CartComponent },
     { path : 'checkout', component: CheckoutComponent },
     { path: '',  redirectTo: 'products', pathMatch: 'full' },
