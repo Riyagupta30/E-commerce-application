@@ -15,9 +15,9 @@
         
             <li class="nav-item" style="padding: 0 20px; font-size: 1.4em">
                 <a class="nav-Link p-2" routerLink="/cart" style="color: #fff">
-                 <i class="fas fa-shopping-cart"></i> <span class="badge badge-Light" style="margin: 10px"></span>
+                 <i class="fas fa-shopping-cart"></i> <span class="badge badge-Light" style="margin-left: 8px" *ngIf="cart.length">{{cart.length}}</span>
               </a>
-              </li>
+            </li>
         
       
       <form class="form-inline my-2 my-lg-0">
