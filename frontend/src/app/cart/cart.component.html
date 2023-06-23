@@ -8,55 +8,39 @@
             <div class="col-md-4 order-md-2 mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Your cart</span>
-                    <span class="badge badge-secondary badge-pill">3</span>
+                    <span class="badge badge-secondary badge-pill">{{cart.length}}</span>
 
                 </h4>
                 
-                 <!-- <ul class="List-group mb-3">
+                 <ul class="List-group mb-3">
 
-                    <li class="List-group-item d-flex justify-content-between">
-                        <span>Total (USD)</span> <strong>22</strong>
+                    <li class="List-group-item d-flex justify-content-between lh-condensed">
+                        <span>Total (USD)</span> <strong>{{cartTotal | currency }}</strong>
                     </li>
 
                     
                     
-                 </ul> -->
-
-                 <div class="form-group">
-                    
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Total (USD) ">
-                  </div>
+                 </ul>
                  
-
                  <button class="btn btn-primary btn-block" routerLink="/checkout">Checkout</button>
                  </div>
                     <div class="col-md-8 order-md-1">
                     <ul class="List-group mb-3">
-                            <li class="List-group-item d-flex justify-content-between lh-condensed">
+                            <li class="List-group-item d-flex justify-content-between lh-condensed" *ngFor="let item of cart">
 
-                                <!-- <div class="form-group">
-                                    <label for="exampleInputEmail1">item name</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Item description">
-                                  </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="my-0">{{item.name}}</h6>
+                                    <small class="text-muted">{{item.description}}</small>
+                                    </div>
+                                    
 
-                                  <div class="form-group">
-                                    <label for="exampleInputEmail1">item name</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Item description">
-                                  </div> -->
+                                    <div class="d-flex align-items-center">
+                                       <h4 class="my-0">{{item.price | currency}}</h4>
+                                    </div>
 
-                                  <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Item name</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="100" aria-describedby="emailHelp" placeholder="Item description"></textarea>
-                                  </div>
-
-
-                                <div class="d-flex align-items-center">
-                                    <h4 class="my-0">$22</h4>
-                                </div>
-
-                                <div class="d-flex align-items-center">
-                                    <button class="btn"><i class="far fa-times-circle"></i></button>
-                                </div>
+                                    <div class="d-flex align-items-center">
+                                        <button class="btn" (click)="removeItemFromCart(item)"><i class="far fa-times-circle"></i></button>
+                                    </div>
                             </li>
                     </ul>
                     </div>
