@@ -10,19 +10,20 @@
           <a class="nav-Link" routerLinks="/products"> Products <span class="sr-only">(current)</span></a>
         </li>
         
-        <li class="nav-item"> 
+        <ul class="navbar-nav flex-row ml-md-autod-none d-md-flex">
+
+          <li class="nav-item" style="padding: 0 20px; font-size: 1.4em">
+            <a class="nav-Link p-2" routerLink="/cart" style="color: #fff">
+             <i class="fas fa-shopping-cart"></i> <span class="badge badge-Light" style="margin-left: 8px" *ngIf="cart.length">{{cart.length}}</span>
+          </a>
         </li>
         
-            <li class="nav-item" style="padding: 0 20px; font-size: 1.4em">
-                <a class="nav-Link p-2" routerLink="/cart" style="color: #fff">
-                 <i class="fas fa-shopping-cart"></i> <span class="badge badge-Light" style="margin-left: 8px" *ngIf="cart.length">{{cart.length}}</span>
-              </a>
-            </li>
+        </ul>
+
+          
         
       
-      <form class="form-inline my-2 my-lg-0">
-        <button class="btn btn-outline-Light my-2 my-sm-0" type="button"></button>
-      </form>
+      
 
     </div>
   </nav>
