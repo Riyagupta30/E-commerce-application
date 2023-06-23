@@ -16,11 +16,15 @@ export class ProductListComponent implements OnInit {
         this.productService.getProducts().subscribe((data: any) => {
            this.products = [...data];
       });
-
     }
 
     addItemToCart(item: any) {
-        this.productService.addToCart(item.id);     
+      console.log("ssssssssssss", item);
+        return this.productService.addToCart(item.id);     
     }
     
+    itemInCart(item: any) {
+      return this.productService.findItemInCart(item.id);
+    }
+
 }

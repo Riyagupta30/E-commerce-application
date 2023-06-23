@@ -14,7 +14,8 @@ export class AppNavComponent {
       ngOnInit() {
         this.productService.getCart().subscribe((data: any) => {
             this.cart = [...data];
-       })
+            console.log("this.cart", this.cart);
+       });
 }
 
 }
