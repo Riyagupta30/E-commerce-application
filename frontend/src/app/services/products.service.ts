@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -11,52 +12,16 @@ export class ProductsService {
     id = '';
     productsSub: any;
     cartSub: any;
-    constructor() {
+    constructor(private http: HttpClient) {
       this.productsSub = new BehaviorSubject<any[]>(this._products);
       this.cartSub = new BehaviorSubject<any[]>(this._cart); 
     }
 
     fetchProducts() {
-        const items = [
-          {
-            "id": 1,
-            "name": "Course name",
-            "price": 40,
-            "inventory": 1,
-            "description": 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
-          },
-          {
-            "id": 2,
-            "name": "Course name two",
-            "price": 40,
-            "inventory": 1,
-            "description": 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
-          },
-          {
-            "id": 3,
-            "name": "Course name three",
-            "price": 40,
-            "inventory": 1,
-            "description": 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
-          },
-          {
-            "id": 4,
-            "name": "Course name four",
-            "price": 40,
-            "inventory": 1,
-            "description": 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
-          },
-          {
-            "id": 5,
-            "name": "Course name five",
-            "price": 40,
-            "inventory": 1,
-            "description": 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
-          },
-        ];
-        this._products = [...items];
-        console.log("this._prodcuts", this._products);
-        this.productsSub.next([...this._products])
+        this.http.get<any[]>('api/products').subscribe(data => {
+          this._products = [...data];
+          this.productsSub.next([...this._products]);
+        });
     }
 
     getProducts() {

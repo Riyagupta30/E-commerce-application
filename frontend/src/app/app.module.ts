@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { APP_ROUTES } from './app.routes';
 import { RouterModule } from '@angular/router';
+import { TruncatePipe } from './truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -19,15 +21,18 @@ import { RouterModule } from '@angular/router';
     AppNavComponent,
     CartComponent,
     CheckoutComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(APP_ROUTES),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

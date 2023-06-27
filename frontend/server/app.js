@@ -11,67 +11,15 @@ mongoose.connect(config.mongoURL,
     { useNewUrlParser: true }
 );
 
-app.get('/seeddb', (req, res) => {
-    const data = [
-        {
-            _id: "5dgd26327usyri8f84fhr77",
-            name: "Javascript Mobile Application Development",
-            description: "Wheather you are developing a mobile app for ipad or on a Windows Phones",
-            image: "/assets/one.jpg",
-            price: 10,
-            __v: 0
-        },
-        {
-            id: "5dgd26327usyri8f84fhr77",
-            name: "Javascript Mobile Application Development",
-            description: "Wheather you are developing a mobile app for ipad or on a Windows Phones",
-            image: "/assets/one.jpg",
-            price: 10,
-            __v: 0
-        },
-        {
-            _id: "5dgd26327usyri8f84fhr77",
-            name: "Javascript Mobile Application Development",
-            description: "Wheather you are developing a mobile app for ipad or on a Windows Phones",
-            image: "/assets/one.jpg",
-            price: 10,
-            __v: 0
-        },
-        {
-            id: "5dgd26327usyri8f84fhr77",
-            name: "Javascript Mobile Application Development",
-            description: "Wheather you are developing a mobile app for ipad or on a Windows Phones",
-            image: "/assets/one.jpg",
-            price: 10,
-            __v: 0
-        },
-        {
-            id: "5dgd26327usyri8f84fhr77",
-            name: "Javascript Mobile Application Development",
-            description: "Wheather you are developing a mobile app for ipad or on a Windows Phones",
-            image: "/assets/one.jpg",
-            price: 10,
-            __v: 0
-        },
-        {
-            id: "5dgd26327usyri8f84fhr77",
-            name: "Javascript Mobile Application Development",
-            description: "Wheather you are developing a mobile app for ipad or on a Windows Phones",
-            image: "/assets/one.jpg",
-            price: 10,
-            __v: 0
-        },
-    ];
-    data.forEach((product) => { 
-        const newProduct = new Product({
-            name: product.name,
-            description: product.description,
-            image: product.image,
-            price: product.price,            
-        });
-        newProduct.save();
+app.get('/api/products', (req, res) => {     
+    Product.find().then(rec => {
+        if(rec) {
+            res.status(200).json(rec);
+        }
+        else {
+            res.status(200).json([]);
+        }
     })
-    res.send("ok")
 })
 
 app.use(bodyParser.json());
