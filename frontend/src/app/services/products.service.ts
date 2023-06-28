@@ -58,6 +58,10 @@ export class ProductsService {
           this.cartSub.next([...this._cart]);
     }
 
+    clearCart() {
+      this.cartSub.next([]);
+    }
+
     findItemInCart(id : any) {
         const item = this._cart.filter((ele:any) => (ele.id === id));
         return item;
@@ -70,4 +74,8 @@ export class ProductsService {
         return item;    
     }
 
+    checkout(data: any) {
+      console.log("sdddddddddddddsa", data);
+        return this.http.post('/api/checkout', data);
+    }
 }

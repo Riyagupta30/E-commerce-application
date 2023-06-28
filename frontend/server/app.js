@@ -5,11 +5,15 @@ const app = express();
 const mongoose = require("mongoose");
 const config = require('./config');
 const Product = require('./models/product');
+const Order = require('./models/order');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongoURL,
     { useNewUrlParser: true }
 );
+
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '../dist')))
 
 app.get('/api/products', (req, res) => {     
     Product.find().then(rec => {
@@ -22,8 +26,27 @@ app.get('/api/products', (req, res) => {
     })
 })
 
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../dist')))
+app.post(`/api/checkout/`, (req, res) => {
+    console.log("reqqqqqqqq", req.body);
+    const newOrder = new Order({
+        firstname: req.body.firstName,
+        lastname: req.body.lastName,
+        email: req.body.email,
+        addressOne: req.body.addressOne,
+        addressTwo: req.body.addressTwo,
+        country: req.body.country,
+        state: req.body.state,
+        zip: req.body.zip,
+        items: req.body.items.map(item => item._id) || [],
+    })
+    newOrder.save().then(rec => {
+        res.status(200).json(rec)
+    }, (err) => {
+        res.status(500).json({error: 'error'})
+    });
+})
+
+
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/index.html'))

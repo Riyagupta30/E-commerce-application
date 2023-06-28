@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -22,7 +23,7 @@ export class CheckoutComponent implements OnInit {
       zip: ['', Validators.required],
     });
 
-    constructor(private fb: FormBuilder, private productService: ProductsService) {}
+    constructor(private fb: FormBuilder, private productService: ProductsService, private router: Router) {}
 
     ngOnInit() {
       this.productService.getCart().subscribe((data: any) => {
@@ -33,8 +34,16 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  doCheckout(){
-    console.log(this.checkoutForm.value);
+  doCheckout() {
+    console.log("doCheck working");
+    const order = {
+      ...this.checkoutForm.value,
+      items: this.cart
+   };
+   this.productService.checkout(order).subscribe(res => {
+    console.log("response in product liat", res)
+        this.router.navigate(['/products']);
+   }); 
   }
 
 }
