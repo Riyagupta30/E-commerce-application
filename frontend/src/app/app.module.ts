@@ -13,6 +13,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { APP_ROUTES } from './app.routes';
 import { RouterModule } from '@angular/router';
 import { TruncatePipe } from './truncate.pipe';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TruncatePipe } from './truncate.pipe';
     CartComponent,
     CheckoutComponent,
     PagenotfoundComponent,
-    TruncatePipe
+    TruncatePipe,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

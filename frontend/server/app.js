@@ -26,6 +26,18 @@ app.get('/api/products', (req, res) => {
     })
 })
 
+app.get('/api/orders', (req, res) => {     
+    Order.find()
+    .populate('items')
+    .exec()
+    .then(rec => {
+       res.status(200).json(rec);
+    })
+    .catch(err => {
+        res.status(500).json(err);
+    })
+})
+
 app.post(`/api/checkout/`, (req, res) => {
     console.log("reqqqqqqqq", req.body);
     const newOrder = new Order({
