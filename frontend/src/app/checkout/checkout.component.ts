@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class CheckoutComponent implements OnInit {
     cart = [1];
     cartTotal = 0;
+    snackbar: any;
     checkoutForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -41,9 +42,17 @@ export class CheckoutComponent implements OnInit {
       items: this.cart
    };
    this.productService.checkout(order).subscribe(res => {
-    console.log("response in product liat", res)
-        this.router.navigate(['/products']);
+    this.snackbar = document.getElementById('snackbar');
+    console.log("this.snackbarrrrrrrrrr", this.snackbar);
+    this.snackbar.innerHTML = 'Order placed successfully';
+    this.snackbar.className = 'show';
+    setTimeout(() => {
+      this.snackbar.className = this.snackbar.className.replace('show', '');
+      this.productService.clearCart();
+       this.router.navigate(['/products']);
+    }, 3000);
+   
    }); 
-  }
+  } 
 
 }
