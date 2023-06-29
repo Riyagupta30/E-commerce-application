@@ -1,3 +1,3 @@
-# E-commerce-application-frontend
+# E-commerce-application
 
 // secondary code push
